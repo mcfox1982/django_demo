@@ -8,7 +8,7 @@
 {% if all_album %}
 <ul>
     {% for album in all_album %}
-    <li><a href="/music/{{album.id}}">{{album.album_title}} -{{album.artist}} </a></li>
+    <li><a href="{% url 'music:detail' album.id%}">{{album.album_title}} -{{album.artist}} </a></li>
     {% endfor %}
 </ul>
 {% else %}
