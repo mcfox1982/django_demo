@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'music/style.css' %}">
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Music Homepage</title>
+</head>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header"></div>
+        <a class="navbar-brand" href="{% url 'music:index' %}">Jin</a>
+    </div>
+</nav>
+{% block body %}
+{% endblock %}

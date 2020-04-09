@@ -1,9 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Music Homepage</title>
-</head>
+{% extends 'base.html' %}
+{% block body %}
 <body>
 {% if all_album %}
 <ul>
@@ -15,4 +11,4 @@
     <h3>You do not have any album</h3>
 {% endif %}
 </body>
-</html>
+{% endblock %}
