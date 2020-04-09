@@ -1,31 +1,20 @@
-from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse, Http404
-from django.template import loader
+from django.views import generic
 from .models import *
+from django.views.generic import CreateView,UpdateView,DeleteView
 
 
-# Create your views here.
-def index(request):
-    all_album = Album.objects.all()
-    template = loader.get_template('index.html')
-    context ={
-        'all_album' : all_album ,
-    }
-    return render(request, 'index.html', context)
+class IndexView(generic.ListView):
+    template_name = 'index.html'
+
+    def get_queryset(self):
+        return Album.objects.all()
 
 
-def detail(request, album_id):
-    album = get_object_or_404(Album, pk=album_id)
-    return render(request, 'detail.html', {'album' : album })
+class DetailView(generic.DetailView):
+    model = Album
+    template_name = 'detail.html'
 
 
-def favorite(request, album_id):
-    album = get_object_or_404(Album, pk=album_id)
-    try:
-        selected_song = album.song_set.get(pk=request.POST['song'])
-    except (KeyError, Song.DoesNotExist):
-        return render(request, 'detail.html', {'album':album, 'error_message': 'you selected nothing',})
-    else:
-        selected_song.is_favorite = True
-        selected_song.save()
-        return render(request, 'detail.html', {'album': album})
+class AlbumCreate(CreateView):
+    model = Album
+    fields = ['artist', 'album_title', 'genre', 'album_logo']

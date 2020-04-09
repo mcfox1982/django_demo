@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% block body %}
 <body>
-{% if all_album %}
+{% if object_list %}
 <ul>
-    {% for album in all_album %}
+    {% for album in object_list %}
     <li><a href="{% url 'music:detail' album.id%}">{{album.album_title}} -{{album.artist}} </a></li>
     {% endfor %}
 </ul>
